@@ -1,4 +1,5 @@
 import mongoose, { Model, Document, Schema } from "mongoose";
+import crypto from "crypto";
 import joi from "joi";
 import bcrypt from "bcrypt";
 import { IUser } from "../interfaces/interfaces";
@@ -13,7 +14,6 @@ const UserValidationSchema = joi.object({
       if (names.length < 2) {
         return helpers.error("Name must not be less than two names");
       }
-
       return value;
     }),
   Email: joi.string().email().required(),
@@ -31,6 +31,9 @@ const UserSchema = new Schema<IUser>(
     Email: { type: String, required: true, unique: true, trim: true },
     Password: { type: String, required: true, trim: true },
     PhoneNumber: { type: String, required: true, unique: true, trim: true },
+    isVerified: { type: Boolean, required: true, default: false },
+    VerifyEmailToken: { type: String },
+    VerifyEmailExpires: { type: Date },
   },
   { timestamps: true }
 );
@@ -39,6 +42,17 @@ UserSchema.methods.matchPassword = async function matchPassword(
   enteredPassword: string
 ): Promise<boolean> {
   return bcrypt.compare(enteredPassword, this.Password);
+};
+
+UserSchema.methods.createVerifyEmailToken = function createVerifyEmailToken() {
+  const verifyToken = crypto.randomBytes(32).toString("hex");
+  this.VerifyEmailToken = crypto
+    .createHash("sha256")
+    .update(verifyToken)
+    .digest("hex");
+  console.log({ verifyToken }, this.VerifyEmailToken);
+  this.VerifyEmailExpires = Date.now() + 10 * 60 * 1000;
+  return verifyToken;
 };
 
 UserSchema.pre<IUser>("save", async function hashPassword(next) {

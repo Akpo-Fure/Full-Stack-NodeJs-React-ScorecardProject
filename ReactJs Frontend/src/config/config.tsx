@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 const config = {
   production: {
     apiURL: "",
@@ -11,8 +8,8 @@ const config = {
     clientURL: "http://localhost:5173",
   },
 };
-
-const isProduction = process.env.NODE_ENV === "production";
+console.log(import.meta.env);
+const isProduction = import.meta.env.PROD;
 
 export const apiUrl = isProduction
   ? config.production.apiURL

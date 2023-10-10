@@ -6,6 +6,10 @@ export interface IUser extends Document {
   Password: string;
   PhoneNumber: string;
   matchPassword: (enteredPassword: string) => Promise<boolean>;
+  isVerified: boolean;
+  VerifyEmailToken: string | undefined;
+  VerifyEmailExpires: Date | undefined;
+  createVerifyEmailToken: () => void;
 }
 
 export interface IError {
