@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npx tsc & NODE_ENV=production node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "build": "yarn --ignore-engines && yarn add typescript && tsc",
+    "build": "yarn --ignore-engines && yarn add typescript --ignore engines  && tsc",
     "watch": "tsc --watch"
   },
   "dependencies": {
