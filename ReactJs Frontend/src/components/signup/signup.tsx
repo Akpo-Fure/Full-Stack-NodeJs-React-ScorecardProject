@@ -69,6 +69,7 @@ function App() {
       toast.success(data.message);
     },
     onError: (error: IError) => {
+      toast.dismiss();
       toast.error(error.response.data.message);
       console.log(error);
     },
@@ -180,7 +181,7 @@ function App() {
               disabled={isSubmitDisabled() || isLoading}
             >
               {isLoading ? (
-                <p className={styles.signup}>Signing Up...</p>
+                <p className={styles.signup2}>Signing Up...</p>
               ) : (
                 <p className={styles.signup}>Sign Up</p>
               )}

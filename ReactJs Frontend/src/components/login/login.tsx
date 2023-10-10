@@ -1,8 +1,86 @@
+import { useState } from "react";
+import axios from "axios";
+import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
 import styles from "./login.module.css";
 import scoreboard from "./scoreboard.png";
+import { apiUrl } from "../../config/config";
+
+const validationSchema = Yup.object().shape({
+  Email: Yup.string().email().required("Email is required").trim(),
+  Password: Yup.string().required("Password is required").trim(),
+});
+const isDisabledShcema = Yup.object().shape({
+  Email: Yup.string().required(),
+  Password: Yup.string().required(),
+});
 
 function App() {
+  interface IError {
+    response: {
+      data: {
+        message: string;
+      };
+    };
+  }
+  interface IFormData {
+    Email: string;
+    Password: string;
+  }
+  const initialFormData = {
+    Email: "",
+    Password: "",
+  };
+
+  const [formData, setFormData] = useState<IFormData>(initialFormData);
+
+  const login = async (formData: IFormData) => {
+    const response = await axios.post(`${apiUrl}/users/login`, formData);
+    return response.data;
+  };
+
+  const { mutate, isLoading } = useMutation(login, {
+    onSuccess: (data) => {
+      document.cookie = `token=${data.token}; path=/`;
+      toast.dismiss();
+      toast.success(data.message);
+    },
+    onError: (error: IError) => {
+      toast.dismiss();
+      toast.error(error.response.data.message);
+    },
+  });
+
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      validationSchema.validateSync(formData, { abortEarly: false });
+      mutate(formData);
+    } catch (error: any) {
+      toast.dismiss();
+      toast.error(Object.values(error.errors).join("\n"));
+    }
+  };
+
+  const isSubmitDisabled = () => {
+    try {
+      isDisabledShcema.validateSync(formData, { abortEarly: false });
+      return false;
+    } catch (error: any) {
+      return true;
+    }
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -32,10 +110,13 @@ function App() {
             <h3 className={styles.scoreboardname}>Scorecard</h3>
           </div>
           <h2 className={styles.header}>Login to your account</h2>
-          <form className={styles.form}>
+          <form onSubmit={handleSubmit} className={styles.form}>
             <p className={styles.details}>Email Address</p>
             <input
               className={styles.forminput}
+              onChange={handleInputChange}
+              name="Email"
+              value={formData.Email}
               type="email"
               placeholder="Enter email address"
               required
@@ -43,6 +124,9 @@ function App() {
             <p className={styles.details}>Password</p>
             <input
               className={styles.forminput}
+              onChange={handleInputChange}
+              name="Password"
+              value={formData.Password}
               type="password"
               placeholder="Enter password"
               required
@@ -50,8 +134,17 @@ function App() {
             <Link className={styles.link3} to="/users/forgotpassword">
               Forgot Password?
             </Link>
-            <button type="submit" className={styles.signupbtn}>
-              <p className={styles.signup}>Sign Up</p>
+            <button
+              type="submit"
+              onSubmit={handleSubmit}
+              disabled={isSubmitDisabled() || isLoading}
+              className={styles.signupbtn}
+            >
+              {isLoading ? (
+                <p className={styles.signup2}> Logging in...</p>
+              ) : (
+                <p className={styles.signup}>Log In</p>
+              )}
             </button>
             <p className={styles.link}>
               Dont't have an account?{" "}

@@ -122,10 +122,16 @@
 .signupbtn:disabled {
   cursor: not-allowed;
   background: #ccc;
+  opacity: 0.5;
 }
 
 .signup {
   color: #ffffff;
+  font: 700 16px/32px "Inter", sans-serif;
+}
+
+.signup2 {
+  color: black;
   font: 700 16px/32px "Inter", sans-serif;
 }
 
