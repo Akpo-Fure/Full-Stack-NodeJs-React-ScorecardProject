@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeScreen from "./screens/homeScreen";
 import SignupScreen from "./screens/signupScreen";
 import LoginScreen from "./screens/loginScreen";
 import ForgotpasswordScreen from "./screens/forgotpasswordScreen";
@@ -10,6 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<HomeScreen />} />
         <Route path="/users/signup" element={<SignupScreen />} />
         <Route path="/users/login" element={<LoginScreen />} />
         <Route

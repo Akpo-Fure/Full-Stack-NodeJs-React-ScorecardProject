@@ -2,6 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://full-stack-node-js-react-scorecard-project.vercel.app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
