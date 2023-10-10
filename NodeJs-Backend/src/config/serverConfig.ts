@@ -4,7 +4,7 @@ dotenv.config();
 const config = {
   production: {
     apiURL: "",
-    clientURL: "",
+    clientURL: "akpofures-scoreboard.vercel.app",
   },
   development: {
     apiURL: "http://localhost:3000",

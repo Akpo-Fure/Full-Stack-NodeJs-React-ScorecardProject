@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node ./bin/www",
+    "start": "npx tsc & NODE_ENV=production node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "build": "yarn --ignore-engines && tsc",
+    "build": "yarn --ignore-engines && yarn add typescript && tsc",
     "watch": "tsc --watch"
   },
   "dependencies": {
