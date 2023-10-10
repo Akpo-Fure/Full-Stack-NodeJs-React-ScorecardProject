@@ -1,6 +1,6 @@
 const config = {
   production: {
-    apiURL: "",
+    apiURL: "https://akpofure-scorecard.onrender.com",
     clientURL: "akpofures-scoreboard.vercel.app",
   },
   development: {
