@@ -23,7 +23,7 @@ export const signup = async (
       return res.status(400).json({ message: "Failed to create user" });
     const verifyEmail = createdUser.createVerifyEmailToken();
     await createdUser.save({ validateBeforeSave: false });
-    const verifyURl = `${clientUrl}/user/verifyEmail/${verifyEmail}`;
+    const verifyURl = `${clientUrl}/users/verifyemail/${verifyEmail}`;
     const message = `Hi, Welcome ${createdUser.Name}, It is great to have you on board.\nVerify your email address by clicking on the link below: ${verifyURl}. \nIf you didn't create an account, please ignore this email`;
     try {
       await sendEmail({
@@ -97,7 +97,7 @@ export const login = async (
     if (!user.isVerified) {
       await user.createVerifyEmailToken();
       await user.save({ validateBeforeSave: false });
-      const verifyURl = `${clientUrl}/user/verifyEmail/${user.VerifyEmailToken}`;
+      const verifyURl = `${clientUrl}/users/verifyemail/${user.VerifyEmailToken}`;
       const message = `Hi, Welcome ${user.Name}, It is great to have you on board.\nVerify your email address by clicking on the link below: ${verifyURl}. \nIf you are having trouble verifying your email, please reply this email so we can help you out`;
       try {
         await sendEmail({
@@ -125,6 +125,81 @@ export const login = async (
     return res
       .status(200)
       .json({ message: "User signed in successfully", token, user });
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const forgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { Email } = req.body;
+  try {
+    const user = await User.findOne({ Email: Email.toLowerCase() });
+    if (!user) return res.status(400).json({ message: "User not found" });
+    const resetToken = user.createPasswordResetToken();
+    await user.save({ validateBeforeSave: false });
+    const resetURL = `${clientUrl}/users/resetpassword/${resetToken}`;
+    const message = `Hi, ${user.Name}, \nForgot your password? Follow this link to reset your password: ${resetURL}.\nIf you didn't forget your password, please ignore this email`;
+    try {
+      await sendEmail({
+        email: user.Email,
+        subject: "Your password reset token (valid for 10 mins)",
+        message,
+      });
+      return res.status(200).json({
+        status: "success",
+        message: "Token sent to email!",
+      });
+    } catch (error: any) {
+      user.PasswordResetToken = undefined;
+      user.PasswordResetExpires = undefined;
+      await user.save({ validateBeforeSave: false });
+      return res.status(500).json({
+        status: "error",
+        message: "There was an error sending the email. Try again later",
+      });
+    }
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const resetPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  console.log("this");
+  try {
+    const HashedToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+    const user = await User.findOne({
+      PasswordResetToken: HashedToken,
+      PasswordResetExpires: { $gt: Date.now() },
+    });
+    if (!user)
+      return res.status(400).json({
+        status: "error",
+        message: "Token is invalid or has expired",
+      });
+    if (req.body.Password !== req.body.ConfirmPassword) {
+      return res.status(400).json({
+        message: "Passwords do not match",
+      });
+    }
+    user.Password = req.body.Password;
+    user.PasswordResetToken = undefined;
+    user.PasswordResetExpires = undefined;
+    await user.save();
+    return res.status(200).json({
+      status: "success",
+      message: "Password reset successfully",
+    });
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }

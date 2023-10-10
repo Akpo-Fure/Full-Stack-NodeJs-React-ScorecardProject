@@ -9,7 +9,10 @@ export interface IUser extends Document {
   isVerified: boolean;
   VerifyEmailToken: string | undefined;
   VerifyEmailExpires: Date | undefined;
+  PasswordResetToken: string | undefined;
+  PasswordResetExpires: Date | undefined;
   createVerifyEmailToken: () => void;
+  createPasswordResetToken: () => void;
 }
 
 export interface IError {

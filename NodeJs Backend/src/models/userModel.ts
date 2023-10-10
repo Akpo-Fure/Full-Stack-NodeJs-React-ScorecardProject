@@ -34,6 +34,8 @@ const UserSchema = new Schema<IUser>(
     isVerified: { type: Boolean, required: true, default: false },
     VerifyEmailToken: { type: String },
     VerifyEmailExpires: { type: Date },
+    PasswordResetToken: { type: String },
+    PasswordResetExpires: { type: Date },
   },
   { timestamps: true }
 );
@@ -43,6 +45,20 @@ UserSchema.methods.matchPassword = async function matchPassword(
 ): Promise<boolean> {
   return bcrypt.compare(enteredPassword, this.Password);
 };
+
+UserSchema.methods.createPasswordResetToken =
+  function createPasswordResetToken() {
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    this.PasswordResetToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    console.log({ resetToken }, this.PasswordResetToken);
+
+    this.PasswordResetExpires = Date.now() + 10 * 60 * 1000;
+    return resetToken;
+  };
 
 UserSchema.methods.createVerifyEmailToken = function createVerifyEmailToken() {
   const verifyToken = crypto.randomBytes(32).toString("hex");
