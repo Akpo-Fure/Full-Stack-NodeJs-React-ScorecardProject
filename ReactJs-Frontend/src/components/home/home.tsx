@@ -51,7 +51,16 @@ function App() {
         </div>
         <div className={styles.body}>
           <img src={mainimage} alt="main" className={styles.mainimage} />
-          {/* Keep track of your progress as you learn */}
+          <div className={styles.bodycontainer}>
+            <h1 className={styles.title}>You can learn anything anywhere</h1>
+            <p className={styles.titletext}>
+              Education is the process of facilitating learning, or the
+              acquistion of knowledge, skills, values, beliefs and habits{" "}
+            </p>
+            <Link className={styles.titlelink} to="/users/signup">
+              Get Started
+            </Link>
+          </div>
         </div>
         <div className={styles.body2}>Take a skill profeciency test</div>
         <div className={styles.middle}>Trusted by over 1,500 Students</div>

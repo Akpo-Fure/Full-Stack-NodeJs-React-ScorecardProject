@@ -77,9 +77,45 @@
 }
 
 .body {
+  position: relative;
+  display: flex;
+  align-items: right;
+  justify-content: right;
 }
 
 .mainimage {
+  filter: brightness(50%);
   width: 100%;
-  height: 80%;
+  height: auto;
+  overflow: hidden;
+}
+
+.bodycontainer {
+  display: flex;
+  flex-direction: column;
+  top: 15%;
+  left: 60%;
+  width: 30%;
+  gap: 1.7vw;
+  position: absolute;
+}
+
+.title {
+  color: #ffffff;
+  font: 700 4vw "Inter", sans-serif;
+}
+
+.titletext {
+  color: #ffffff;
+  font: 500 1.3vw "Inter", sans-serif;
+}
+
+.titlelink {
+  max-width: fit-content;
+  text-decoration: none;
+  background: #14a800;
+  font: 600 1.3vw "Inter", sans-serif;
+  color: white;
+  border-radius: 3px;
+  padding: 3% 5%;
 }
