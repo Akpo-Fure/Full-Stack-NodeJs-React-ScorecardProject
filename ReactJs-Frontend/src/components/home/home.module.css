@@ -77,6 +77,7 @@
 }
 
 .body {
+  width: 100%;
   position: relative;
   display: flex;
   align-items: right;
@@ -114,8 +115,39 @@
   max-width: fit-content;
   text-decoration: none;
   background: #14a800;
-  font: 600 1.3vw "Inter", sans-serif;
+  font: 500 1.2vw "Inter", sans-serif;
   color: white;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 3% 5%;
+}
+
+.body2 {
+  margin: 7vw 10vw;
+}
+
+.bodyheader {
+  width: 50%;
+  margin-bottom: 20px;
+  color: #03435f;
+  font: 700 2.5vw "Inter", sans-serif;
+}
+
+.bodyheadertext {
+  width: 50%;
+  color: #03435f;
+  font: 400 16px "Inter", sans-serif;
+  margin-bottom: 20px;
+}
+
+.gridcontainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-gap: 2vw;
+}
+
+.flexcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: auto;
 }

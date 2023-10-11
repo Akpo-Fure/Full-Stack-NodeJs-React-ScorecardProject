@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import mainimage from "./main-body.jpeg";
 import styles from "./home.module.css";
+import javascript from "./javascript.png";
+import react from "./react.png";
+import Cplusplus from "./C++.png";
 
 function App() {
   return (
@@ -62,7 +65,72 @@ function App() {
             </Link>
           </div>
         </div>
-        <div className={styles.body2}>Take a skill profeciency test</div>
+        <div className={styles.body2}>
+          <h2 className={styles.bodyheader}>
+            Choose from the best courses. <br />
+            No Hassles!
+          </h2>
+          <p className={styles.bodyheadertext}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+            eget ipsum, sed praesent.
+          </p>
+          <div className={styles.gridcontainer}>
+            <div className={styles.flexcontainer}>
+              <img src={javascript} />
+              <h3>Learn Javascript & frameworks</h3>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+                eget ipsum, sed praesent.
+              </p>
+            </div>
+            <div className={styles.flexcontainer}>
+              <img src={react} />
+              <h3>Learn React & framework</h3>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+                eget ipsum, sed praesent.
+              </p>
+            </div>
+            <div className={styles.flexcontainer}>
+              <img src={Cplusplus} />
+              <h3>C++ & framework</h3>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+                eget ipsum, sed praesent.
+              </p>
+            </div>
+            <div className={styles.flexcontainer}>
+              <img src={javascript} />
+              <h3>Learn Javascript & frameworks</h3>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+                eget ipsum, sed praesent.
+              </p>
+            </div>
+            <div className={styles.flexcontainer}>
+              <img src={react} />
+              <h3>Learn React & framework</h3>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+                eget ipsum, sed praesent.
+              </p>
+            </div>
+            <div className={styles.flexcontainer}>
+              <img src={Cplusplus} />
+              <h3>C++ & framework</h3>
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
+                eget ipsum, sed praesent.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className={styles.middle}>Trusted by over 1,500 Students</div>
         <div className={styles.body3}>Track your weekly assessment</div>
         <div className={styles.body4}>Our Partners</div>
