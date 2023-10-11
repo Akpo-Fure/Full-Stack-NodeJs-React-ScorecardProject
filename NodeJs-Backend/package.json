@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npx tsc & NODE_ENV=production node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "build": "yarn --ignore-engines && npx tsc",
+    "build": " tsc",
     "watch": "tsc --watch"
   },
   "dependencies": {
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/http-errors": "^2.0.2",
-    "@types/nodemailer": "^6.4.11"
+    "@types/nodemailer": "^6.4.11",
+    "ts-node": "^10.9.1"
   }
 }
