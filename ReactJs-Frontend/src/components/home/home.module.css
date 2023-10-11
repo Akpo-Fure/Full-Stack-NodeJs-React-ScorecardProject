@@ -1,3 +1,85 @@
+@media screen and (min-width: 700px) {
+  .scoreboard {
+    display: flex;
+    gap: 5px;
+    color: #21334f;
+    text-align: left;
+    font: 600 28px "Inter", sans-serif;
+  }
+
+  .scoreboardlogo {
+    background: linear-gradient(
+      161.92deg,
+      rgba(20, 168, 0, 1) 0%,
+      rgba(184, 211, 68, 1) 100%
+    );
+    border-radius: 50%;
+    padding: 10px;
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+
+  .scoreboardname {
+    color: #21334f;
+    font-family: sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-items: flex-end;
+    top: 10px;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .scoreboard {
+    display: none;
+  }
+}
+
 .home {
-  background-color: blue;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+}
+
+.header {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2% 10%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbarlink {
+  text-decoration: none;
+  color: #012a4a;
+  font: 700 16px "Inter", sans-serif;
+}
+
+.loginlink {
+  text-decoration: none;
+  background: #14a800;
+  font: 600 16px "Inter", sans-serif;
+  color: white;
+  border-radius: 3px;
+  padding: 3% 10%;
+}
+
+.body {
+}
+
+.mainimage {
+  width: 100%;
+  height: 80%;
 }
