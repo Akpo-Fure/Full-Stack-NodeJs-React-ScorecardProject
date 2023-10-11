@@ -151,3 +151,57 @@
   gap: 10px;
   width: auto;
 }
+
+.coursesheader {
+  color: #03435f;
+  text-align: left;
+  font: 700 "Inter", sans-serif;
+}
+
+.coursestext {
+  color: #03435f;
+  text-align: left;
+  font: 400 14px/24px "Inter", sans-serif;
+}
+
+.middle {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+
+.middlecontainer {
+  display: flex;
+  top: 50%;
+  /* left: 50%; */
+  width: 100%;
+  /* gap: 1.7vw; */
+  /* justify-content: space-evenly; */
+  justify-content: center;
+  gap: 5vw;
+  position: absolute;
+}
+
+.middleimage {
+  filter: brightness(50%);
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.middleheader {
+  color: #ffffff;
+  font: 700 2vw "Inter", sans-serif;
+}
+
+.middlelink {
+  color: #ffffff;
+  text-decoration: none;
+  /* font: 500 1.3vw "Inter", sans-serif; */
+  font: 500 1.1vw "Inter", sans-serif;
+  padding: 1vw 2vw;
+  border-radius: 30px;
+  border: 1px solid white;
+}

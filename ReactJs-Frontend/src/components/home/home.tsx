@@ -4,6 +4,7 @@ import styles from "./home.module.css";
 import javascript from "./javascript.png";
 import react from "./react.png";
 import Cplusplus from "./C++.png";
+import trusted from "./trusted.png";
 
 function App() {
   return (
@@ -76,54 +77,58 @@ function App() {
           </p>
           <div className={styles.gridcontainer}>
             <div className={styles.flexcontainer}>
-              <img src={javascript} />
-              <h3>Learn Javascript & frameworks</h3>
-              <p>
+              <img className={styles.courses} src={javascript} />
+              <h3 className={styles.coursesheader}>
+                Learn Javascript & frameworks
+              </h3>
+              <p className={styles.coursestext}>
                 {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
                 eget ipsum, sed praesent.
               </p>
             </div>
             <div className={styles.flexcontainer}>
-              <img src={react} />
-              <h3>Learn React & framework</h3>
-              <p>
+              <img className={styles.courses} src={react} />
+              <h3 className={styles.coursesheader}>Learn React & framework</h3>
+              <p className={styles.coursestext}>
                 {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
                 eget ipsum, sed praesent.
               </p>
             </div>
             <div className={styles.flexcontainer}>
-              <img src={Cplusplus} />
-              <h3>C++ & framework</h3>
-              <p>
+              <img className={styles.courses} src={Cplusplus} />
+              <h3 className={styles.coursesheader}>C++ & framework</h3>
+              <p className={styles.coursestext}>
                 {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
                 eget ipsum, sed praesent.
               </p>
             </div>
             <div className={styles.flexcontainer}>
-              <img src={javascript} />
-              <h3>Learn Javascript & frameworks</h3>
-              <p>
+              <img className={styles.courses} src={javascript} />
+              <h3 className={styles.coursesheader}>
+                Learn Javascript & frameworks
+              </h3>
+              <p className={styles.coursestext}>
                 {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
                 eget ipsum, sed praesent.
               </p>
             </div>
             <div className={styles.flexcontainer}>
-              <img src={react} />
-              <h3>Learn React & framework</h3>
-              <p>
+              <img className={styles.courses} src={react} />
+              <h3 className={styles.coursesheader}>Learn React & framework</h3>
+              <p className={styles.coursestext}>
                 {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
                 eget ipsum, sed praesent.
               </p>
             </div>
             <div className={styles.flexcontainer}>
-              <img src={Cplusplus} />
-              <h3>C++ & framework</h3>
-              <p>
+              <img className={styles.courses} src={Cplusplus} />
+              <h3 className={styles.coursesheader}>C++ & framework</h3>
+              <p className={styles.coursestext}>
                 {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
                 eget ipsum, sed praesent.
@@ -131,7 +136,18 @@ function App() {
             </div>
           </div>
         </div>
-        <div className={styles.middle}>Trusted by over 1,500 Students</div>
+        <div className={styles.middle}>
+          <img src={trusted} className={styles.middleimage} />
+          <div className={styles.middlecontainer}>
+            <h2 className={styles.middleheader}>
+              Trusted by over 1,500 students
+            </h2>
+            <Link to="/users/signup" className={styles.middlelink}>
+              {" "}
+              Get Started{" "}
+            </Link>
+          </div>
+        </div>
         <div className={styles.body3}>Track your weekly assessment</div>
         <div className={styles.body4}>Our Partners</div>
         <div className={styles.footer}>Footer</div>
